@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css'
 // import Game from './Game'
-import Card from './Card'
+import Hand from './Hand'
 
 
 
@@ -19,7 +19,7 @@ import Card from './Card'
 ReactDOM.render(
 	<div>
 		<h3>Nine Hole Golf!</h3>
-		<Card />
+		<Hand />
 	</div>,
 	document.getElementById('root')
 );

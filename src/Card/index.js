@@ -1,14 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './index.css'
-import cards from './cards.js'
+
 
 function Card(props) {
+	console.log('this is props in Card');
+	console.log(props);
 	return(
 		<div 
 			className="card"
 		>
-			<p>{cards[1].name}</p>
-			<p>{cards[1].suit}</p>
+			<p>{props.name}</p>
+			<p>{props.suit}</p>
 		</div>
 	)
 }

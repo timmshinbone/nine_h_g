@@ -1,0 +1,13 @@
+.player-hand{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	width: 200px;
+	height: 275px;
+	border: 1px solid grey	;
+}
+.board-row{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
