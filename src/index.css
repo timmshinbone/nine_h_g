@@ -1,3 +1,13 @@
 body{
-	background-color: darkseagreen
+	display: flex;
+	justify-content: center;
+	background-color: darkseagreen;
+	font: 14px Impact, charcoal, sans-serif;
+	margin: 20px;
 }
+
+ol, ul {
+  padding-left: 30px;
+}
+
+/*font: 14px "Century Gothic", Futura, sans-serif;*/
