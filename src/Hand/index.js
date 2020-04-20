@@ -15,7 +15,7 @@ class Hand extends Component {
 				suit={this.props.deck[i].suit}
 				val={this.props.deck[i].val}
 				showing={this.props.showing}
-				onClick={() => this.handleClick(this.state.deck[i])}
+				onClick={() => this.handleClick(this.props.deck[i])}
 			/>
 		)
 	}
@@ -25,10 +25,7 @@ class Hand extends Component {
 	}
 
 	render(){
-		console.log('this is cards');
-		console.log(cards);
-		console.log('this is the deck');
-		console.log(this.props.deck);
+
 		return (
 			<div className="player-hand">
 				<div className="board-row">

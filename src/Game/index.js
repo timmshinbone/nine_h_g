@@ -10,7 +10,9 @@ class Game extends Component {
 		this.state = {
 			round: 0,
 			active: false,
-			deck: cards.slice()
+			deck: this.shuffle(cards.slice()),
+			playerHand: [],
+			discardPile: []
 		}
 	}
 	shuffle(arr){
@@ -31,12 +33,36 @@ class Game extends Component {
 		return arr
 	}
 	dealHand(){
+		const pHand = []
+		const discardPile = []
+		const newDeck = this.state.deck.slice()
+		for(let i = 0; i < 10; i++){
+			if(i < 9){
+				let card = newDeck[i]
+				pHand.push(card)
+				newDeck.splice(i, 1)
+			} else {
+				let card = newDeck[i]
+				discardPile.push(card)
+				newDeck.splice(i, 1)
+			}
+		}
 		this.setState({
-			deck: this.shuffle(this.state.deck),
-			active: !this.state.active
+			deck: newDeck,
+			playerHand: pHand,
+			active: true,
+			discardPile: discardPile
+
 		})
+		console.log('this is the deck');
+		console.log(this.state.deck);
+		console.log('this is the player hand');
+		console.log(this.state.playerHand);
 	}
 	render(){
+		console.log('this is playerHand\n', this.state.playerHand);
+		console.log('this is the discardPile\n', this.state.discardPile);
+		console.log('this is the deck\n', this.state.deck);
 		return(
 			<div className='game'>
 				<div className='top-bar'>
@@ -44,11 +70,24 @@ class Game extends Component {
 					<button onClick={() => this.dealHand()}>deal</button>
 				</div>
 				<div className='game-row'>
+					{this.state.active
+						?
 					<div className='deck-and-disc'>
-						<Card /><small>draw</small>
-						<Card /><small>discard</small>
+						<Card />
+						<small>draw</small>
+						<Card 
+							showing={true} 
+							name={this.state.discardPile[0].name}
+							suit={this.state.discardPile[0].suit}
+						/>
+						<small>discard</small>
 					</div>
-					<Hand deck={this.state.deck} showing={this.state.active}/>
+					:
+					null
+
+					}
+					{this.state.active ? <Hand deck={this.state.playerHand} showing={this.state.active}/> : null}
+					
 					<div className='other-hands'>
 					</div>
 				</div>
