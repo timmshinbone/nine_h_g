@@ -4,6 +4,28 @@ import Card from '../Card'
 import cards from '../Card/cards.js'
 
 class Hand extends Component {
+	constructor(props){
+		super(props)
+		this.state = {
+			deck: cards.slice()
+		}
+	}
+	shuffle(arr){
+		//declare variables to use
+		let m = arr.length 
+		let t = null 
+		let i = null
+		//while there exist cards to shuffle
+		while(m) {
+			//pick a remaining card
+			i = Math.floor(Math.random() * m--)
+			//swap it with the current card
+			t = arr[m]
+			arr[m] = arr[i];
+			arr[i] = t;
+		}
+		return arr
+	}
 	deal(i){
 		return(
 			<Card 
@@ -15,11 +37,14 @@ class Hand extends Component {
 	}
 
 	render(){
+		const handDeck = this.shuffle(this.state.deck)
+		console.log("this is the handDeck");
+		console.log(handDeck);
 		return (
 			<div className="player-hand">
 				<div className="board-row">
-					{this.deal(0)}
-					{this.deal(1)}
+					{this.deal(52)}
+					{this.deal(45)}
 					{this.deal(2)}
 				</div>
 				<div className="board-row">
