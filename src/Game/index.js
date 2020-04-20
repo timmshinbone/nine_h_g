@@ -3,17 +3,26 @@ import './index.css'
 import Hand from '../Hand'
 import Card from '../Card'
 import cards from '../Card/cards.js'
-
+// this.shuffle(cards.slice()),
 class Game extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
 			round: 0,
 			active: false,
-			deck: this.shuffle(cards.slice()),
+			deck: this.buildDeck(cards.slice()),
 			playerHand: [],
 			discardPile: []
 		}
+	}
+	buildDeck(arr){
+		let tripleDeck = []
+		for(let i = 0; i < 3; i++){
+			for(let k = 0; k < arr.length; k++){
+				tripleDeck.push(arr[k])
+			}
+		}
+		return this.shuffle(tripleDeck)
 	}
 	shuffle(arr){
 		//THIS IS FISCHER-YATES SHUFFLE
