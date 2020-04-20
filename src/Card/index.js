@@ -3,15 +3,16 @@ import './index.css'
 
 
 function Card(props) {
-	console.log('this is props in Card');
-	console.log(props);
+
 	return(
-		<div 
-			className="card"
-		>
-			<p>{props.name}</p>
-			<p>{props.suit}</p>
-		</div>
+			<div 
+				className={props.showing ? 'face' : 'back'}
+				onClick={props.onClick}
+			>
+				<small>{props.name}</small>
+				<small>{props.suit}</small>
+			</div>
+			
 	)
 }
 

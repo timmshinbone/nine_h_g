@@ -18,7 +18,6 @@ import Game from './Game'
 
 ReactDOM.render(
 	<div>
-		<h3>Nine Hole Golf!</h3>
 		<Game />
 	</div>,
 	document.getElementById('root')
