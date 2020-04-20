@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './index.css'
 import Hand from '../Hand'
+import Card from '../Card'
 import cards from '../Card/cards.js'
 
 class Game extends Component {
@@ -42,7 +43,15 @@ class Game extends Component {
 					<h4>Nine Hole Golf</h4>
 					<button onClick={() => this.dealHand()}>deal</button>
 				</div>
-				<Hand deck={this.state.deck} showing={this.state.active}/>
+				<div className='game-row'>
+					<div className='deck-and-disc'>
+						<Card /><small>draw</small>
+						<Card /><small>discard</small>
+					</div>
+					<Hand deck={this.state.deck} showing={this.state.active}/>
+					<div className='other-hands'>
+					</div>
+				</div>
 			</div>
 		)
 	}
