@@ -70,6 +70,11 @@ class Game extends Component {
 		console.log('this is the player hand');
 		console.log(this.state.playerHand);
 	}
+	drawDiscard(card){
+		console.log('drawDiscard clicked');
+		console.log(card);
+
+	}
 	render(){
 		console.log('this is playerHand\n', this.state.playerHand);
 		console.log('this is the discardPile\n', this.state.discardPile);
@@ -90,6 +95,7 @@ class Game extends Component {
 							showing={true} 
 							name={this.state.discardPile[0].name}
 							suit={this.state.discardPile[0].suit}
+							onClick={() => this.drawDiscard(this.state.discardPile[0])}
 						/>
 						<small>discard</small>
 					</div>
