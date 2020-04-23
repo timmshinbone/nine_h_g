@@ -11,7 +11,8 @@ class Game extends Component {
 			round: 0,
 			active: false,
 			deck: this.buildDeck(cards.slice()),
-			playerHand: [],
+			players:[],
+			playerHands: [],
 			discardPile: []
 		}
 	}
@@ -44,7 +45,8 @@ class Game extends Component {
 	dealHand(){
 		const pHand = []
 		const discardPile = []
-		const newDeck = this.state.deck.slice()
+		const newDeck = this.buildDeck(cards.slice())
+		console.log('this is the deck before deal\n', newDeck);
 		for(let i = 0; i < 10; i++){
 			if(i < 9){
 				let card = newDeck[i]
@@ -63,7 +65,7 @@ class Game extends Component {
 			discardPile: discardPile
 
 		})
-		console.log('this is the deck');
+		console.log('this is the deck after deal');
 		console.log(this.state.deck);
 		console.log('this is the player hand');
 		console.log(this.state.playerHand);

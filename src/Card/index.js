@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './index.css'
 
 
 function Card(props) {
-
+	// const [showing, showCard] = useState(true)
+	// console.log(showing);
 	return(
 			<div 
 				className={props.showing ? 'face' : 'back'}
-				onClick={props.onClick}
+				onClick={() => props.onClick()}
 			>
-				<small>{props.name}</small>
-				<small>{props.suit}</small>
+				<small>{props.name}{props.suit}</small>
+				
 			</div>
 			
 	)

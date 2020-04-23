@@ -6,22 +6,36 @@ import cards from '../Card/cards.js'
 class Hand extends Component {
 	constructor(props){
 		super(props)
+		this.state={
+			deck: this.props.deck,
+			players: [
+				{name: 'timm', score: 0}
+			],
+			cardsInDeck: [],
+			cardsInHands: []
+		}
 	}
 
 	deal(i){
+		const deck = this.state.deck
 		return(
 			<Card 
-				name={this.props.deck[i].name}
-				suit={this.props.deck[i].suit}
-				val={this.props.deck[i].val}
-				showing={this.props.showing}
-				onClick={() => this.handleClick(this.props.deck[i])}
+				name={deck[i].name}
+				suit={deck[i].suit}
+				val={deck[i].val}
+				showing={deck[i].showing}
+				onClick={() => this.handleClick(deck[i])}
 			/>
 		)
 	}
+
 	handleClick(card){
 		console.log(card);
 		card.showing = !card.showing
+		console.log();
+		this.setState({
+			deck: this.props.deck
+		})
 	}
 
 	render(){
@@ -31,7 +45,7 @@ class Hand extends Component {
 				<div className="board-row">
 					{this.deal(0)}
 					{this.deal(1)}
-					{this.deal(2)}
+					{this.deal(5)}
 				</div>
 				<div className="board-row">
 					{this.deal(3)}
