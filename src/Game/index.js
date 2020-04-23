@@ -97,7 +97,7 @@ class Game extends Component {
 					null
 
 					}
-					{this.state.active ? <Hand deck={this.state.playerHand} showing={this.state.active}/> : null}
+					{this.state.active ? <Hand deck={this.state.playerHand} /> : null}
 					
 					<div className='other-hands'>
 					</div>

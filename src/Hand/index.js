@@ -45,7 +45,7 @@ class Hand extends Component {
 				<div className="board-row">
 					{this.deal(0)}
 					{this.deal(1)}
-					{this.deal(5)}
+					{this.deal(2)}
 				</div>
 				<div className="board-row">
 					{this.deal(3)}

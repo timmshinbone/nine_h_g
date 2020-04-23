@@ -10,7 +10,8 @@ function Card(props) {
 				className={props.showing ? 'face' : 'back'}
 				onClick={() => props.onClick()}
 			>
-				<small>{props.name}{props.suit}</small>
+				<small className='top'>{props.name}{props.suit}</small>
+				<small className='bottom'>{props.name}{props.suit}</small>
 				
 			</div>
 			
