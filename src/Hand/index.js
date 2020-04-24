@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './index.css'
 import Card from '../Card'
-import cards from '../Card/cards.js'
+
 
 class Hand extends Component {
 	constructor(props){
@@ -16,10 +16,12 @@ class Hand extends Component {
 		}
 	}
 
-	deal(i){
+	placeCards(i){
 		const deck = this.state.deck
+		//deck is the player's hand deck from Game State(switch to Round state)
 		return(
 			<Card 
+				index = {i}
 				name={deck[i].name}
 				suit={deck[i].suit}
 				val={deck[i].val}
@@ -29,9 +31,12 @@ class Hand extends Component {
 		)
 	}
 
-	handleClick(card){
+	handleClick(card, i){
+		console.log("this is the player's card in their array");
+		const pHand = this.state.deck
+		console.log(pHand[pHand.indexOf(card)]);
 		console.log(card);
-		card.showing = !card.showing
+		pHand[pHand.indexOf(card)].showing = !card.showing
 		console.log();
 		this.setState({
 			deck: this.props.deck
@@ -43,19 +48,19 @@ class Hand extends Component {
 		return (
 			<div className="player-hand">
 				<div className="board-row">
-					{this.deal(0)}
-					{this.deal(1)}
-					{this.deal(2)}
+					{this.placeCards(0)}
+					{this.placeCards(1)}
+					{this.placeCards(2)}
 				</div>
 				<div className="board-row">
-					{this.deal(3)}
-					{this.deal(4)}
-					{this.deal(5)}
+					{this.placeCards(3)}
+					{this.placeCards(4)}
+					{this.placeCards(5)}
 				</div>
 				<div className="board-row">
-					{this.deal(6)}
-					{this.deal(7)}
-					{this.deal(8)}
+					{this.placeCards(6)}
+					{this.placeCards(7)}
+					{this.placeCards(8)}
 				</div>
 			</div>
 

@@ -46,39 +46,36 @@ class Game extends Component {
 		const pHand = []
 		const discardPile = []
 		const newDeck = this.buildDeck(cards.slice())
-		console.log('this is the deck before deal\n', newDeck);
+		// console.log('this is the deck before deal\n', newDeck);
 		for(let i = 0; i < 10; i++){
 			if(i < 9){
-				let card = newDeck[i]
+				let card = {name: newDeck[i].name, suit: newDeck[i].suit, id: i}
 				pHand.push(card)
 				newDeck.splice(i, 1)
 			} else {
-				let card = newDeck[i]
+				let card = {name: newDeck[i].name, suit: newDeck[i].suit, id: i}
 				discardPile.push(card)
 				newDeck.splice(i, 1)
 			}
 		}
 		this.setState({
 			deck: newDeck,
-			playerHand: pHand,
+			playerHands: pHand,
 			active: true,
 			discardPile: discardPile
 
 		})
-		console.log('this is the deck after deal');
-		console.log(this.state.deck);
-		console.log('this is the player hand');
-		console.log(this.state.playerHand);
 	}
 	drawDiscard(card){
 		console.log('drawDiscard clicked');
 		console.log(card);
+		console.log(this.state.deck);
 
 	}
 	render(){
-		console.log('this is playerHand\n', this.state.playerHand);
-		console.log('this is the discardPile\n', this.state.discardPile);
-		console.log('this is the deck\n', this.state.deck);
+		// console.log('this is playerHand\n', this.state.playerHand);
+		// console.log('this is the discardPile\n', this.state.discardPile);
+		// console.log('this is the deck\n', this.state.deck);
 		return(
 			<div className='game'>
 				<div className='top-bar'>
@@ -103,7 +100,7 @@ class Game extends Component {
 					null
 
 					}
-					{this.state.active ? <Hand deck={this.state.playerHand} /> : null}
+					{this.state.active ? <Hand deck={this.state.playerHands} /> : null}
 					
 					<div className='other-hands'>
 					</div>
