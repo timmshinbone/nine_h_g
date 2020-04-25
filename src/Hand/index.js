@@ -12,7 +12,9 @@ class Hand extends Component {
 				{name: 'timm', score: 0}
 			],
 			cardsInDeck: [],
-			cardsInHands: []
+			cardsInHands: [],
+			showingCount: 0,
+			rowPick: true,
 		}
 	}
 
@@ -31,16 +33,36 @@ class Hand extends Component {
 		)
 	}
 
-	handleClick(card, i){
-		console.log("this is the player's card in their array");
+	handleClick(card){
+		const rowPick = this.state.rowPick
+		let showingCount = this.state.showingCount
 		const pHand = this.state.deck
-		console.log(pHand[pHand.indexOf(card)]);
-		console.log(card);
-		pHand[pHand.indexOf(card)].showing = !card.showing
-		console.log();
-		this.setState({
-			deck: this.props.deck
-		})
+		if(this.state.rowPick === true){
+			//refactor this so that it changes when a round activates rowpick
+			//rowpick is it's own three click function that gauges the placement
+			//of the cards.
+			if(showingCount < 2){
+				console.log(card);
+				pHand[pHand.indexOf(card)].showing = !card.showing
+				console.log(showingCount);
+				this.setState({
+					deck: this.props.deck,
+					showingCount: this.state.showingCount += 1
+				})
+			} else {
+				console.log(card);
+				pHand[pHand.indexOf(card)].showing = !card.showing
+				console.log(showingCount);
+				this.setState({
+					deck: this.props.deck,
+					showingCount: this.state.showingCount += 1,
+					rowPick: false
+				})
+			}
+
+		} else {
+			console.log("It's not time yet!");
+		}
 	}
 
 	render(){

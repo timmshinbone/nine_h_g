@@ -1,3 +1,6 @@
+// ♠︎♣︎♥︎♦︎
+//♤♧♡♢
+//
 const cards = [
 	{name: 'A', val:1, suit: '♤'},
 	{name: '2', val:2, suit: '♤'},
