@@ -42,7 +42,7 @@ small{
 	border: 1px solid grey;
 }
 
-.other-hands{
+.card-selected{
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

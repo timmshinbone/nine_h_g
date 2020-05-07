@@ -13,7 +13,8 @@ class Game extends Component {
 			deck: this.buildDeck(cards.slice()),
 			players:[],
 			playerHands: [],
-			discardPile: []
+			discardPile: [],
+			drawnCard: null
 		}
 	}
 	buildDeck(arr){
@@ -66,6 +67,21 @@ class Game extends Component {
 
 		})
 	}
+	drawDeck(card){
+		console.log('this is the drawn card\n', card);
+		const pHand = []
+		const discardPile = []
+		const newDeck = this.buildDeck(cards.slice())
+		console.log('this is length of newDeck in drawDeck\n', newDeck.length);
+		newDeck.splice(0, 1)
+		console.log('this is length of newDeck in drawDeck\n', newDeck.length);
+
+		this.setState({
+			drawnCard: card,
+			deck: newDeck
+		})
+
+	}
 	drawDiscard(card){
 		console.log('drawDiscard clicked');
 		console.log(card);
@@ -73,6 +89,7 @@ class Game extends Component {
 
 	}
 	render(){
+		console.log(this.state.deck.length);
 		// console.log('this is playerHand\n', this.state.playerHand);
 		// console.log('this is the discardPile\n', this.state.discardPile);
 		// console.log('this is the deck\n', this.state.deck);
@@ -86,7 +103,11 @@ class Game extends Component {
 					{this.state.active
 						?
 					<div className='deck-and-disc'>
-						<Card />
+						<Card 
+							showing={false}
+							name={this.state.deck[0].name}
+							suit={this.state.deck[0].suit}
+							onClick={() => this.drawDeck(this.state.deck[0])}/>
 						<small>draw</small>
 						<Card 
 							showing={true} 
@@ -102,7 +123,17 @@ class Game extends Component {
 					}
 					{this.state.active ? <Hand deck={this.state.playerHands} /> : null}
 					
-					<div className='other-hands'>
+					<div className='card-selected'>
+						{
+							this.state.drawnCard 
+							? <Card
+								showing={true}
+								name={this.state.drawnCard.name}
+								suit={this.state.drawnCard.suit}
+								onClick={() => console.log(this.state.drawnCard)}
+								/> 
+							: null
+						}
 					</div>
 				</div>
 			</div>
