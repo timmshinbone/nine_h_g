@@ -69,12 +69,11 @@ class Game extends Component {
 	}
 	drawDeck(card){
 		console.log('this is the drawn card\n', card);
-		const pHand = []
-		const discardPile = []
-		const newDeck = this.buildDeck(cards.slice())
-		console.log('this is length of newDeck in drawDeck\n', newDeck.length);
+
+		let newDeck = this.state.deck.slice()
+		console.log('this is newDeck.length\n', newDeck.length);
+		
 		newDeck.splice(0, 1)
-		console.log('this is length of newDeck in drawDeck\n', newDeck.length);
 
 		this.setState({
 			drawnCard: card,
@@ -89,7 +88,8 @@ class Game extends Component {
 
 	}
 	render(){
-		console.log(this.state.deck.length);
+		console.log('length of the deck in state');
+		console.log(this.state.deck.length)
 		// console.log('this is playerHand\n', this.state.playerHand);
 		// console.log('this is the discardPile\n', this.state.discardPile);
 		// console.log('this is the deck\n', this.state.deck);
