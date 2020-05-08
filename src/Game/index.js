@@ -68,23 +68,34 @@ class Game extends Component {
 		})
 	}
 	drawDeck(card){
-		console.log('this is the drawn card\n', card);
-
-		let newDeck = this.state.deck.slice()
-		console.log('this is newDeck.length\n', newDeck.length);
-		
-		newDeck.splice(0, 1)
-
-		this.setState({
-			drawnCard: card,
-			deck: newDeck
-		})
-
+		if(this.state.drawnCard == null){
+			console.log('this is the drawn card\n', card);
+			let newDeck = this.state.deck.slice()
+			newDeck.splice(0, 1)
+			this.setState({
+				drawnCard: card,
+				deck: newDeck
+			})
+		} else {
+			console.log('you already got one');
+		}
 	}
+
 	drawDiscard(card){
-		console.log('drawDiscard clicked');
-		console.log(card);
-		console.log(this.state.deck);
+		if(this.state.drawnCard == null){
+			let newDiscDeck = this.state.discardPile.slice()
+			console.log('this is the discard pile deck');
+			console.log(newDiscDeck);
+			newDiscDeck.splice(0, 1)
+			this.setState({
+				drawnCard: card,
+				discardPile: newDiscDeck 
+			})
+
+
+		} else {
+			console.log('you already got one');
+		}
 
 	}
 	render(){
@@ -111,9 +122,10 @@ class Game extends Component {
 						<small>draw</small>
 						<Card 
 							showing={true} 
-							name={this.state.discardPile[0].name}
-							suit={this.state.discardPile[0].suit}
+							name={this.state.discardPile.length > 0 ? this.state.discardPile[0].name : 'empty'}
+							suit={this.state.discardPile.length > 0 ? this.state.discardPile[0].suit : null}
 							onClick={() => this.drawDiscard(this.state.discardPile[0])}
+							drawnCard={this.state.drawnCard}
 						/>
 						<small>discard</small>
 					</div>
@@ -121,7 +133,14 @@ class Game extends Component {
 					null
 
 					}
-					{this.state.active ? <Hand deck={this.state.playerHands} /> : null}
+					{
+						this.state.active 
+						? <Hand 
+							deck={this.state.playerHands}
+							drawnCard={this.state.drawnCard} 
+							/> 
+						: null
+					}
 					
 					<div className='card-selected'>
 						{
@@ -131,6 +150,7 @@ class Game extends Component {
 								name={this.state.drawnCard.name}
 								suit={this.state.drawnCard.suit}
 								onClick={() => console.log(this.state.drawnCard)}
+								drawnCard={this.state.drawnCard}
 								/> 
 							: null
 						}
