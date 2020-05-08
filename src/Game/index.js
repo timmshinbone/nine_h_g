@@ -91,12 +91,16 @@ class Game extends Component {
 				drawnCard: card,
 				discardPile: newDiscDeck 
 			})
-
-
 		} else {
 			console.log('you already got one');
 		}
 
+	}
+	swapCard(card){
+		
+		console.log('the state in this func?');
+		console.log(this.state);
+		console.log(card);
 	}
 	render(){
 		console.log('length of the deck in state');
@@ -137,7 +141,8 @@ class Game extends Component {
 						this.state.active 
 						? <Hand 
 							deck={this.state.playerHands}
-							drawnCard={this.state.drawnCard} 
+							drawnCard={this.state.drawnCard}
+							swapCard={this.swapCard}
 							/> 
 						: null
 					}

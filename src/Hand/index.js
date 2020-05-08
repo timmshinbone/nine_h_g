@@ -28,12 +28,19 @@ class Hand extends Component {
 				suit={deck[i].suit}
 				val={deck[i].val}
 				showing={deck[i].showing}
-				onClick={() => this.handleClick(deck[i])}
+				onClick={
+							this.props.drawnCard == null
+							?
+								() => this.rowFlip(deck[i])
+							:
+								() => this.props.swapCard(deck[i])
+
+						}
 			/>
 		)
 	}
 
-	handleClick(card){
+	rowFlip(card){
 		const rowPick = this.state.rowPick
 		let showingCount = this.state.showingCount
 		const pHand = this.state.deck
