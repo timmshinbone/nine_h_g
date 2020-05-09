@@ -33,7 +33,7 @@ class Hand extends Component {
 							?
 								() => this.rowFlip(deck[i])
 							:
-								() => this.props.swapCard(deck[i])
+								() => this.swapCard(deck[i])
 
 						}
 			/>
@@ -70,6 +70,28 @@ class Hand extends Component {
 		} else {
 			console.log("It's not time yet!");
 		}
+	}
+
+	swapCard(card){
+		console.log('the card clicked');
+		console.log(card);
+		let drawn = this.props.drawnCard
+		let pHand = this.state.deck
+		console.log('this is the whole hand');
+		console.log(pHand);
+		console.log('this is the card clicked');
+		console.log(pHand[pHand.indexOf(card)]);
+		console.log('this is the card drawn');
+		console.log(drawn);
+		console.log('is the card showing');
+		console.log(card.showing);
+		
+		pHand.splice(pHand.indexOf(card), 1, drawn);
+		// console.log(pHand);
+		this.setState({
+			deck: pHand
+		})
+		
 	}
 
 	render(){

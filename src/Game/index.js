@@ -50,11 +50,11 @@ class Game extends Component {
 		// console.log('this is the deck before deal\n', newDeck);
 		for(let i = 0; i < 10; i++){
 			if(i < 9){
-				let card = {name: newDeck[i].name, suit: newDeck[i].suit, id: i}
+				let card = {name: newDeck[i].name, suit: newDeck[i].suit, id: i, showing: newDeck[i].showing}
 				pHand.push(card)
 				newDeck.splice(i, 1)
 			} else {
-				let card = {name: newDeck[i].name, suit: newDeck[i].suit, id: i}
+				let card = {name: newDeck[i].name, suit: newDeck[i].suit, id: i, showing: true}
 				discardPile.push(card)
 				newDeck.splice(i, 1)
 			}
@@ -70,6 +70,7 @@ class Game extends Component {
 	drawDeck(card){
 		if(this.state.drawnCard == null){
 			console.log('this is the drawn card\n', card);
+			card.showing = true
 			let newDeck = this.state.deck.slice()
 			newDeck.splice(0, 1)
 			this.setState({
@@ -96,15 +97,11 @@ class Game extends Component {
 		}
 
 	}
-	swapCard(card){
-		
-		console.log('the state in this func?');
-		console.log(this.state);
-		console.log(card);
-	}
+
 	render(){
 		console.log('length of the deck in state');
 		console.log(this.state.deck.length)
+
 		// console.log('this is playerHand\n', this.state.playerHand);
 		// console.log('this is the discardPile\n', this.state.discardPile);
 		// console.log('this is the deck\n', this.state.deck);
@@ -119,7 +116,7 @@ class Game extends Component {
 						?
 					<div className='deck-and-disc'>
 						<Card 
-							showing={false}
+							showing={this.state.deck[0].showing}
 							name={this.state.deck[0].name}
 							suit={this.state.deck[0].suit}
 							onClick={() => this.drawDeck(this.state.deck[0])}/>
@@ -142,7 +139,6 @@ class Game extends Component {
 						? <Hand 
 							deck={this.state.playerHands}
 							drawnCard={this.state.drawnCard}
-							swapCard={this.swapCard}
 							/> 
 						: null
 					}
