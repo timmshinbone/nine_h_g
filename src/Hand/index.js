@@ -89,7 +89,7 @@ class Hand extends Component {
 		pHand.splice(pHand.indexOf(card), 1, drawn);
 		// console.log(pHand);
 		this.setState({
-			deck: pHand
+			deck: pHand,
 		})
 		
 	}
