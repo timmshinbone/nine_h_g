@@ -39,7 +39,7 @@ export default function Hand(props){
 			if(showingCount < 2){
 				console.log(hand);
 				console.log(card);
-				pHand[pHand.indexOf(card)].showing = !card.showing
+				pHand[pHand.indexOf(card)].showing = true
 				console.log(card);
 				console.log(showingCount);
 				setShowingCount(showingCount += 1)
@@ -48,7 +48,7 @@ export default function Hand(props){
 			} else {
 				console.log(hand);
 				console.log(card);
-				pHand[pHand.indexOf(card)].showing = !card.showing
+				pHand[pHand.indexOf(card)].showing = true
 				console.log(hand);
 				showingCount += 1
 				console.log(showingCount);

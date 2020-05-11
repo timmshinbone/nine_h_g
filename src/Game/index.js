@@ -96,20 +96,22 @@ export default function Game(){
 		console.log('discard pile\n', discardPile);
 		let drawn = drawnCard
 		let pHand = playerHands
-		if(card !== discardPile[0]){
-			pHand.splice(pHand.indexOf(card), 1, drawn);
-			setPlayerHands(pHand)
-			setDrawnCard(null)
-			const newDiscPile = [card].concat(discardPile)
-			setDiscardPile(newDiscPile)
+		pHand.splice(pHand.indexOf(card), 1, drawn);
+		setPlayerHands(pHand)
+		setDrawnCard(null)
+		const newDiscPile = [card].concat(discardPile)
+		setDiscardPile(newDiscPile)
 			// setRefresh(!refresh)
-
-		} else {
-			const newDiscPile = [drawnCard].concat(discardPile)
-			setDiscardPile(newDiscPile)
-			setDrawnCard(null)
-		}
 	}
+
+	const discardPick = () => {
+		let newPile = discardPile
+		newPile.unshift(drawnCard)
+		console.log("discarded!");
+		setDiscardPile(newPile)
+		setDrawnCard(null)
+	}
+
 	return(
 			<div className='game'>
 				<div className='top-bar'>
@@ -136,7 +138,7 @@ export default function Game(){
 								? discardPile[0].suit : null}
 							onClick={
 								drawnCard !== null 
-								? () => swapCard(drawnCard)
+								? () => discardPick()
 								: () => drawDiscard(discardPile[0])}
 							drawnCard={drawnCard}
 						/>
