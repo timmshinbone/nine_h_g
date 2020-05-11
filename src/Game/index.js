@@ -90,19 +90,19 @@ export default function Game(){
 			console.log('you already got one');
 		}
 	}
-	const swapCard = (card) => {
-		console.log('the card clicked');
-		console.log(card);
-		console.log('discard pile\n', discardPile);
-		let drawn = drawnCard
-		let pHand = playerHands
-		pHand.splice(pHand.indexOf(card), 1, drawn);
-		setPlayerHands(pHand)
-		setDrawnCard(null)
-		const newDiscPile = [card].concat(discardPile)
-		setDiscardPile(newDiscPile)
-			// setRefresh(!refresh)
-	}
+	// const swapCard = (card) => {
+	// 	console.log('the card clicked');
+	// 	console.log(card);
+	// 	console.log('discard pile\n', discardPile);
+	// 	let drawn = drawnCard
+	// 	let pHand = playerHands
+	// 	pHand.splice(pHand.indexOf(card), 1, drawn);
+	// 	setPlayerHands(pHand)
+	// 	setDrawnCard(null)
+	// 	const newDiscPile = [card].concat(discardPile)
+	// 	setDiscardPile(newDiscPile)
+	// 		// setRefresh(!refresh)
+	// }
 
 	const discardPick = () => {
 		let newPile = discardPile
@@ -154,7 +154,8 @@ export default function Game(){
 							deck={playerHands}
 							drawnCard={drawnCard}
 							setDrawnCard={setDrawnCard}
-							swapCard={swapCard}
+							discardPile={discardPile}
+							setDiscardPile={setDiscardPile}
 							/> 
 						: null
 					}
