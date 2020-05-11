@@ -24,7 +24,7 @@ export default function Hand(props){
 							?
 								() => rowFlip(hand[i])
 							:
-								() => swapCard(hand[i])
+								() => props.swapCard(hand[i])
 
 						}
 			/>
@@ -60,25 +60,24 @@ export default function Hand(props){
 			console.log("It's not time yet!");
 		}
 	}
-	const swapCard = (card) => {
-		console.log('the card clicked');
-		console.log(card);
-		let drawn = props.drawnCard
-		let pHand = hand
-		console.log('this is the whole hand');
-		console.log(pHand);
-		console.log('this is the card clicked');
-		console.log(pHand[pHand.indexOf(card)]);
-		console.log('this is the card drawn');
-		console.log(drawn);
-		console.log('is the card showing');
-		console.log(card.showing);
-		
-		pHand.splice(pHand.indexOf(card), 1, drawn);
-		// console.log(pHand);
-		setHand(pHand)
-		setRefresh(!refresh)
-	}
+	// const swapCard = (card) => {
+	// 	console.log('the card clicked');
+	// 	console.log(card);
+	// 	console.log('discard pile\n', props.discardPile);
+	// 	if(card === props.discardPile[0]){
+	// 		console.log("you clicked the discard pile");
+	// 	} else {
+	// 		let drawn = props.drawnCard
+	// 		let pHand = hand
+	// 		let newDiscPile = props.discardPile
+	// 		pHand.splice(pHand.indexOf(card), 1, drawn);
+	// 		newDiscPile.unshift(card)
+	// 		setHand(pHand)
+	// 		props.setDrawnCard(null)
+	// 		props.setDiscardPile(newDiscPile)
+	// 		// setRefresh(!refresh)
+	// 	}
+	// }
 	console.log('this is cards in hand', hand);
 	return (
 		<div className="player-hand">
