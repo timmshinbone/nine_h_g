@@ -31,22 +31,22 @@ export default function Game(){
 		}
 		return arr
 	}
-	const buildDeck = (arr) => {
-		let tripleDeck = []
-		for(let i = 0; i < 3; i++){
-			for(let k = 0; k < arr.length; k++){
-				tripleDeck.push(arr[k])
-			}
-		}
-		return shuffle(tripleDeck)
-	}
+	// const buildDeck = (arr) => {
+	// 	let tripleDeck = []
+	// 	for(let i = 0; i < 3; i++){
+	// 		for(let k = 0; k < arr.length; k++){
+	// 			tripleDeck.push(arr[k])
+	// 		}
+	// 	}
+	// 	return shuffle(tripleDeck)
+	// }
 
-	const [deck, setDeck] = useState(buildDeck(cards.slice()))
+	const [deck, setDeck] = useState(shuffle(cards.slice()))
 	
 	const dealHand = () => {
 		const pHand = []
 		const discPile = []
-		const newDeck = buildDeck(cards.slice())
+		const newDeck = deck.slice()
 		// console.log('this is the deck before deal\n', newDeck);
 		for(let i = 0; i < 10; i++){
 			if(i < 9){
