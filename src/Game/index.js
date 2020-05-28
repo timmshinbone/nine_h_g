@@ -7,9 +7,7 @@ import cards from '../Card/cards.js'
 
 export default function Game(){
 
-	const [round, setRound] = useState(0)
 	const [active, setActive] = useState(false)
-	const [players, setPlayers] = useState([])
 	const [playerHands, setPlayerHands] = useState([])
 	const [discardPile, setDiscardPile] = useState([])
 	const [drawnCard, setDrawnCard] = useState(null)
@@ -47,7 +45,7 @@ export default function Game(){
 		const pHand = []
 		const discPile = []
 		const newDeck = deck.slice()
-		// console.log('this is the deck before deal\n', newDeck);
+
 		for(let i = 0; i < 10; i++){
 			if(i < 9){
 				let card = {name: newDeck[i].name, suit: newDeck[i].suit, id: i, showing: newDeck[i].showing}

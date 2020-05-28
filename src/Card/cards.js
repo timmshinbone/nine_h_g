@@ -54,8 +54,8 @@ const cards = [
 	{deck:1, name: 'J', val:10, suit: '♢', showing: false},
 	{deck:1, name: 'Q', val:10, suit: '♢', showing: false},
 	{deck:1, name: 'K', val:0, suit: '♢', showing: false},
-	{deck:1, name: 'Joker', val:-2, suit: null},
-	{deck:1, name: 'Joker', val:-2, suit: null},
+	{deck:1, name: 'Joker', val:-2, suit: null, showing: false},
+	{deck:1, name: 'Joker', val:-2, suit: null, showing: false},
 	{deck:2, name: 'A', val:1, suit: '♤', showing: false},
 	{deck:2, name: '2', val:2, suit: '♤', showing: false},
 	{deck:2, name: '3', val:3, suit: '♤', showing: false},
@@ -108,8 +108,8 @@ const cards = [
 	{deck:2, name: 'J', val:10, suit: '♢', showing: false},
 	{deck:2, name: 'Q', val:10, suit: '♢', showing: false},
 	{deck:2, name: 'K', val:0, suit: '♢', showing: false},
-	{deck:2, name: 'Joker', val:-2, suit: null},
-	{deck:2, name: 'Joker', val:-2, suit: null},
+	{deck:2, name: 'Joker', val:-2, suit: null, showing: false},
+	{deck:2, name: 'Joker', val:-2, suit: null, showing: false},
 	{deck:3, name: 'A', val:1, suit: '♤', showing: false},
 	{deck:3, name: '2', val:2, suit: '♤', showing: false},
 	{deck:3, name: '3', val:3, suit: '♤', showing: false},
@@ -162,8 +162,8 @@ const cards = [
 	{deck:3, name: 'J', val:10, suit: '♢', showing: false},
 	{deck:3, name: 'Q', val:10, suit: '♢', showing: false},
 	{deck:3, name: 'K', val:0, suit: '♢', showing: false},
-	{deck:3, name: 'Joker', val:-2, suit: null},
-	{deck:3, name: 'Joker', val:-2, suit: null},
+	{deck:3, name: 'Joker', val:-2, suit: null, showing: false},
+	{deck:3, name: 'Joker', val:-2, suit: null, showing: false},
 ]
 
 export default cards

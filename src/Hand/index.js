@@ -4,10 +4,8 @@ import Card from '../Card'
 
 export default function Hand(props){
 	const [hand, setHand] = useState(props.deck)
-	const [players, setPlayers] = useState({name: 'timm', score: 0})
 	let [showingCount, setShowingCount] = useState(0)
 	const [rowPick, setRowPick] = useState(true)
-	const [refresh, setRefresh] = useState(true)
 
 	const placeCards = (i) => {
 		// const deck = this.state.deck
@@ -50,7 +48,7 @@ export default function Hand(props){
 				console.log(card);
 				pHand[pHand.indexOf(card)].showing = true
 				console.log(hand);
-				showingCount += 1
+				setShowingCount(showingCount += 1)
 				console.log(showingCount);
 				setHand(pHand)
 				setRowPick(false)
@@ -60,23 +58,38 @@ export default function Hand(props){
 			console.log("It's not time yet!");
 		}
 	}
+
 	const swapCard = (card) => {
 		console.log('the card clicked');
 		console.log(card);
 		console.log('discard pile\n', props.discardPile);	
 		let drawn = props.drawnCard
 		let pHand = hand
-		let newDiscPile = props.discardPile
+		drawn.showing = true
 		pHand.splice(pHand.indexOf(card), 1, drawn);
 		let newPile = props.discardPile.slice()
 		newPile.unshift(card)
 		setHand(pHand)
 		props.setDrawnCard(null)
 		props.setDiscardPile(newPile)
+		
 		// setRefresh(!refresh)
 		
 	}
+	const countShowing = () => {
+		let total = 0
+		for(let i = 0; i < hand.length; i++){
+			if(hand[i].showing){
+				total++
+			} else {
+				console.log('not showing');
+			}
+		}
+		return total
+	}
 	console.log('this is cards in hand', hand);
+	console.log('this is the showing count\n', showingCount);
+	console.log('this is countShowing func', countShowing())
 	return (
 		<div className="player-hand">
 			<div className="board-row">
@@ -94,6 +107,7 @@ export default function Hand(props){
 				{placeCards(7)}
 				{placeCards(8)}
 			</div>
+			<small>Score: </small>
 		</div>
 
 	)
