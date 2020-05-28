@@ -6,6 +6,7 @@ export default function Hand(props){
 	const [hand, setHand] = useState(props.deck)
 	let [showingCount, setShowingCount] = useState(0)
 	const [rowPick, setRowPick] = useState(true)
+	const [handScore, setHandScore] = useState(0)
 
 	const placeCards = (i) => {
 		// const deck = this.state.deck
@@ -60,18 +61,22 @@ export default function Hand(props){
 	}
 
 	const swapCard = (card) => {
-		console.log('the card clicked');
-		console.log(card);
-		console.log('discard pile\n', props.discardPile);	
-		let drawn = props.drawnCard
-		let pHand = hand
-		drawn.showing = true
-		pHand.splice(pHand.indexOf(card), 1, drawn);
-		let newPile = props.discardPile.slice()
-		newPile.unshift(card)
-		setHand(pHand)
-		props.setDrawnCard(null)
-		props.setDiscardPile(newPile)
+		if(countShowing() !== 9){
+			console.log('the card clicked');
+			console.log(card);
+			console.log('discard pile\n', props.discardPile);	
+			let drawn = props.drawnCard
+			let pHand = hand
+			drawn.showing = true
+			pHand.splice(pHand.indexOf(card), 1, drawn);
+			let newPile = props.discardPile.slice()
+			newPile.unshift(card)
+			setHand(pHand)
+			props.setDrawnCard(null)
+			props.setDiscardPile(newPile)
+		} else {
+			console.log("you've gone out!");
+		}
 		
 		// setRefresh(!refresh)
 		
@@ -87,9 +92,42 @@ export default function Hand(props){
 		}
 		return total
 	}
+	const countScore = (cardArr) => {
+		const deadRows = [
+			[0, 1, 2],
+			[3, 4, 5],
+			[6, 7, 8],
+			[0, 3, 6],
+			[1, 4, 7],
+			[2, 5, 8]
+		]
+		if(countShowing() !== 9){
+			console.log('not ready to score cards yet');
+		} else {
+			const cardArrCopy = cardArr.slice()
+			for(let i = 0; i < deadRows.length; i++){
+				const [a, b, c] = deadRows[i]
+				if(cardArr[a].name && cardArr[a].name === cardArr[b].name && cardArr[a].name === cardArr[c].name){
+					let deadId = cardArr.indexOf(cardArr[a])
+					console.log('this is the deadrow');
+					console.log(cardArr[a]);
+					cardArrCopy.splice(deadId, 3)
+					console.log('the card arr copy after splice');
+					console.log(cardArrCopy);
+				}
+			}
+			let scoreTotal = 0
+			for(let b = 0; b < cardArrCopy.length; b++){
+				scoreTotal += cardArrCopy[b].val
+			}
+			console.log('this is the scoreTotal');
+			console.log(scoreTotal);
+		}
+	}
 	console.log('this is cards in hand', hand);
 	console.log('this is the showing count\n', showingCount);
 	console.log('this is countShowing func', countShowing())
+	countScore(hand)
 	return (
 		<div className="player-hand">
 			<div className="board-row">
@@ -107,7 +145,7 @@ export default function Hand(props){
 				{placeCards(7)}
 				{placeCards(8)}
 			</div>
-			<small>Score: </small>
+			<small>Score: {handScore}</small>
 		</div>
 
 	)
