@@ -12,7 +12,7 @@ export default function Hand(props){
 		// const deck = this.state.deck
 		//deck is the player's hand deck from Game State(switch to Round state)
 		return(
-			<Card 
+			<Card
 				index = {i}
 				name={hand[i].name}
 				suit={hand[i].suit}
@@ -43,7 +43,7 @@ export default function Hand(props){
 				console.log(showingCount);
 				setShowingCount(showingCount += 1)
 				setHand(pHand)
-				
+
 			} else {
 				console.log(hand);
 				console.log(card);
@@ -64,7 +64,7 @@ export default function Hand(props){
 		if(countShowing() !== 9){
 			console.log('the card clicked');
 			console.log(card);
-			console.log('discard pile\n', props.discardPile);	
+			console.log('discard pile\n', props.discardPile);
 			let drawn = props.drawnCard
 			let pHand = hand
 			drawn.showing = true
@@ -77,9 +77,9 @@ export default function Hand(props){
 		} else {
 			console.log("you've gone out!");
 		}
-		
+
 		// setRefresh(!refresh)
-		
+
 	}
 	const countShowing = () => {
 		let total = 0
@@ -93,6 +93,7 @@ export default function Hand(props){
 		return total
 	}
 	const countScore = (cardArr) => {
+		let scoreTotal = 0
 		const deadRows = [
 			[0, 1, 2],
 			[3, 4, 5],
@@ -104,30 +105,32 @@ export default function Hand(props){
 		if(countShowing() !== 9){
 			console.log('not ready to score cards yet');
 		} else {
-			const cardArrCopy = cardArr.slice()
 			for(let i = 0; i < deadRows.length; i++){
 				const [a, b, c] = deadRows[i]
 				if(cardArr[a].name && cardArr[a].name === cardArr[b].name && cardArr[a].name === cardArr[c].name){
-					let deadId = cardArr.indexOf(cardArr[a])
-					console.log('this is the deadrow');
-					console.log(cardArr[a]);
-					cardArrCopy.splice(deadId, 3)
-					console.log('the card arr copy after splice');
-					console.log(cardArrCopy);
+					if(cardArr[a].name !== 'Joker' && cardArr[b].name !== 'Joker' && cardArr[c].name !== 'Joker') {
+						cardArr[a].val = 0
+						cardArr[b].val = 0
+						cardArr[c].val = 0
+					}
+					console.log('This is cardArr: ', cardArr)
+					console.log('cardArr values')
+					cardArr.forEach(card => console.log(card.val))
+					console.log('this is the hand', hand)
 				}
 			}
-			let scoreTotal = 0
-			for(let b = 0; b < cardArrCopy.length; b++){
-				scoreTotal += cardArrCopy[b].val
+			for(let b = 0; b < cardArr.length; b++){
+				scoreTotal += cardArr[b].val
 			}
 			console.log('this is the scoreTotal');
 			console.log(scoreTotal);
 		}
+		// setHandScore(scoreTotal)
 	}
 	console.log('this is cards in hand', hand);
-	console.log('this is the showing count\n', showingCount);
+	let handCopy = hand.slice()
 	console.log('this is countShowing func', countShowing())
-	countScore(hand)
+	countScore(handCopy)
 	return (
 		<div className="player-hand">
 			<div className="board-row">
@@ -171,7 +174,7 @@ export default function Hand(props){
 // 		const deck = this.state.deck
 // 		//deck is the player's hand deck from Game State(switch to Round state)
 // 		return(
-// 			<Card 
+// 			<Card
 // 				index = {i}
 // 				name={deck[i].name}
 // 				suit={deck[i].suit}
@@ -234,13 +237,13 @@ export default function Hand(props){
 // 		console.log(drawn);
 // 		console.log('is the card showing');
 // 		console.log(card.showing);
-		
+
 // 		pHand.splice(pHand.indexOf(card), 1, drawn);
 // 		// console.log(pHand);
 // 		this.setState({
 // 			deck: pHand,
 // 		})
-		
+
 // 	}
 
 // 	render(){

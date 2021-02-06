@@ -15,8 +15,8 @@ export default function Game(){
 	const shuffle = (arr) => {
 		//THIS IS FISCHER-YATES SHUFFLE
 		//declare variables to use
-		let m = arr.length 
-		let t = null 
+		let m = arr.length
+		let t = null
 		let i = null
 		//while there exist cards to shuffle
 		while(m) {
@@ -40,7 +40,7 @@ export default function Game(){
 	// }
 
 	const [deck, setDeck] = useState(shuffle(cards.slice()))
-	
+
 	const dealHand = () => {
 		const pHand = []
 		const discPile = []
@@ -48,11 +48,11 @@ export default function Game(){
 
 		for(let i = 0; i < 10; i++){
 			if(i < 9){
-				let card = {name: newDeck[i].name, suit: newDeck[i].suit, id: i, showing: newDeck[i].showing}
+				let card = {name: newDeck[i].name, val:newDeck[i].val, suit: newDeck[i].suit, id: i, showing: newDeck[i].showing}
 				pHand.push(card)
 				newDeck.splice(i, 1)
 			} else {
-				let card = {name: newDeck[i].name, suit: newDeck[i].suit, id: i, showing: true}
+				let card = {name: newDeck[i].name, val:newDeck[i].val, suit: newDeck[i].suit, id: i, showing: true}
 				discPile.push(card)
 				newDeck.splice(i, 1)
 			}
@@ -62,7 +62,7 @@ export default function Game(){
 		setActive(true)
 		setDiscardPile(discPile)
 	}
-	
+
 	const drawDeck = (card) => {
 		if(drawnCard == null){
 			console.log('this is the drawn card\n', card);
@@ -75,7 +75,7 @@ export default function Game(){
 			console.log('you already got one');
 		}
 	}
-	
+
 	const drawDiscard = (card) => {
 		if(drawnCard == null){
 			let newDisc = discardPile.slice()
@@ -120,22 +120,22 @@ export default function Game(){
 					{active
 						?
 					<div className='deck-and-disc'>
-						<Card 
+						<Card
 							showing={deck[0].showing}
 							name={deck[0].name}
 							suit={deck[0].suit}
 							onClick={() => drawDeck(deck[0])}/>
 						<small>draw</small>
-						<Card 
-							showing={true} 
+						<Card
+							showing={true}
 							name={
-								discardPile.length > 0 
+								discardPile.length > 0
 								? discardPile[0].name : 'empty'}
 							suit={
-								discardPile.length > 0 
+								discardPile.length > 0
 								? discardPile[0].suit : null}
 							onClick={
-								drawnCard !== null 
+								drawnCard !== null
 								? () => discardPick()
 								: () => drawDiscard(discardPile[0])}
 							drawnCard={drawnCard}
@@ -147,27 +147,27 @@ export default function Game(){
 
 					}
 					{
-						active 
-						? <Hand 
+						active
+						? <Hand
 							deck={playerHands}
 							drawnCard={drawnCard}
 							setDrawnCard={setDrawnCard}
 							discardPile={discardPile}
 							setDiscardPile={setDiscardPile}
-							/> 
+							/>
 						: null
 					}
-					
+
 					<div className='card-selected'>
 						{
-							drawnCard 
+							drawnCard
 							? <Card
 								showing={true}
 								name={drawnCard.name}
 								suit={drawnCard.suit}
 								onClick={() => console.log(drawnCard)}
 								drawnCard={drawnCard}
-								/> 
+								/>
 							: null
 						}
 					</div>
@@ -201,8 +201,8 @@ export default function Game(){
 // 	shuffle(arr){
 // 		//THIS IS FISCHER-YATES SHUFFLE
 // 		//declare variables to use
-// 		let m = arr.length 
-// 		let t = null 
+// 		let m = arr.length
+// 		let t = null
 // 		let i = null
 // 		//while there exist cards to shuffle
 // 		while(m) {
@@ -262,7 +262,7 @@ export default function Game(){
 // 			newDiscDeck.splice(0, 1)
 // 			this.setState({
 // 				drawnCard: card,
-// 				discardPile: newDiscDeck 
+// 				discardPile: newDiscDeck
 // 			})
 // 		} else {
 // 			console.log('you already got one');
@@ -287,14 +287,14 @@ export default function Game(){
 // 					{this.state.active
 // 						?
 // 					<div className='deck-and-disc'>
-// 						<Card 
+// 						<Card
 // 							showing={this.state.deck[0].showing}
 // 							name={this.state.deck[0].name}
 // 							suit={this.state.deck[0].suit}
 // 							onClick={() => this.drawDeck(this.state.deck[0])}/>
 // 						<small>draw</small>
-// 						<Card 
-// 							showing={true} 
+// 						<Card
+// 							showing={true}
 // 							name={this.state.discardPile.length > 0 ? this.state.discardPile[0].name : 'empty'}
 // 							suit={this.state.discardPile.length > 0 ? this.state.discardPile[0].suit : null}
 // 							onClick={() => this.drawDiscard(this.state.discardPile[0])}
@@ -307,24 +307,24 @@ export default function Game(){
 
 // 					}
 // 					{
-// 						this.state.active 
-// 						? <Hand 
+// 						this.state.active
+// 						? <Hand
 // 							deck={this.state.playerHands}
 // 							drawnCard={this.state.drawnCard}
-// 							/> 
+// 							/>
 // 						: null
 // 					}
-					
+
 // 					<div className='card-selected'>
 // 						{
-// 							this.state.drawnCard 
+// 							this.state.drawnCard
 // 							? <Card
 // 								showing={true}
 // 								name={this.state.drawnCard.name}
 // 								suit={this.state.drawnCard.suit}
 // 								onClick={() => console.log(this.state.drawnCard)}
 // 								drawnCard={this.state.drawnCard}
-// 								/> 
+// 								/>
 // 							: null
 // 						}
 // 					</div>
